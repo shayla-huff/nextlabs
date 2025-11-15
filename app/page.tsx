@@ -1,34 +1,24 @@
-import "./globals.css";
-import Link from "next/link";
-import type { Metadata } from "next";
+export default async function HomePage() {
+  const res = await fetch("https://nextlabs-chi.vercel.app/api/profiles", {
+    cache: "no-store",
+  });
 
-export const metadata: Metadata = {
-  title: "Next.js Lab",
-  description: "A simple Next.js application",
-};
+  const profiles = await res.json();
 
-export default function RootLayout({
-    children,
-}: {
-  children: React.ReactNode;
-}) {
   return (
-    <html lang="en">
-      <body>
-        <header>
-          <h1>Profiles</h1>
-          <nav style={{ marginTop: "1rem" }}>
-            <Link href="/">Home</Link> |{" "}
-            <Link href="/addstudent">Add Student</Link>
-          </nav>
-        </header>
+    <main>
+      <h1>Profiles</h1>
 
-        <main>{ children }</main>
-
-        <footer>
-          <p>© 2025 Profiles, Inc.</p>
-        </footer>
-      </body>
-    </html>
+      <ul>
+        {profiles.map((p: any) => (
+          <li key={p.id}>
+            <h3>{p.name}</h3>
+            <p>{p.title}</p>
+            <p>{p.email}</p>
+            <img src={p.image_url} width={100} />
+          </li>
+        ))}
+      </ul>
+    </main>
   );
 }

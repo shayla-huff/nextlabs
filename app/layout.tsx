@@ -1,15 +1,15 @@
 import "./globals.css";
-import type { Metadata } from "next"; 
-import React from "react";
+import Link from "next/link";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Profiles / Next.js Project",
-  description: "Browse user profiles built with Next.js app router",
+  title: "Next.js Lab",
+  description: "A simple Next.js application",
 };
 
-export default function RootLayout({ 
-  children, 
-}: { 
+export default function RootLayout({
+    children,
+}: {
   children: React.ReactNode;
 }) {
   return (
@@ -17,8 +17,12 @@ export default function RootLayout({
       <body>
         <header>
           <h1>Profiles</h1>
+            <Link href="/">Home</Link> |{" "}
+            <Link href="/addstudent">Add Student</Link>
         </header>
-        <main>{children}</main>
+
+        <main>{ children }</main>
+
         <footer>
           <p>© 2025 Profiles, Inc.</p>
         </footer>
