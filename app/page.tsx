@@ -7,8 +7,6 @@ export default async function HomePage() {
 
   return (
     <main>
-      <h1>Profiles</h1>
-
       <ul>
         {profiles.map((p: any) => (
           <li key={p.id}>
