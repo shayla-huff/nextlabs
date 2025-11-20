@@ -19,6 +19,7 @@ export default function RootLayout({
           <h1>Profiles</h1>
             <Link href="/">Home</Link> |{" "}
             <Link href="/addstudent">Add Student</Link>
+            <Link href="/addprofile">Add Profile</Link>
         </header>
 
         <main>{ children }</main>
