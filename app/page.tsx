@@ -14,15 +14,7 @@ export default async function HomePage() {
             <p>{p.title}</p>
             <p>{p.email}</p>
             <img src={p.image_url} width={100} />
-
-            <button onClick={async () => {
-              await fetch(`/api/profiles?id=${p.id}`, {
-                method: "DELETE",
-              });
-              window.location.reload();
-            }}>Delete</button>
           </li>
-          
         ))}
       </ul>
     </main>
