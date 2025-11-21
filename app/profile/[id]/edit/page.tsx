@@ -3,16 +3,25 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
+type Profile = {
+    id: number;
+    name: string;
+    title: string;
+    email: string;
+    bio: string;
+    image_url: string;
+};
+
 export default function EditProfile({ params }: any) {
     const id = params.id;
     const router = useRouter();
 
-    const [profile, setProfile] = useState<any>(null);
+    const [profile, setProfile] = useState<Profile | null>(null);
 
     useEffect(() => {
         fetch(`/api/profiles?id=${id}`)
-            .then(res => res.json())
-            .then(data => setProfile(data));
+            .then((res) => res.json())
+            .then((data) => setProfile(data));
     }, [id]);
 
     const handleSubmit = async (e: any) => {
@@ -23,10 +32,11 @@ export default function EditProfile({ params }: any) {
             headers: { "Content-Type": "application/json" }, 
             body: JSON.stringify({
                 id: Number(id),
-                name: profile.name,
-                email: profile.email,
-                bio: profile.bio,
-                image_url: profile.image_url,
+                name: profile!.name,
+                title: profile!.title,
+                email: profile!.email,
+                bio: profile!.bio,
+                image_url: profile!.image_url,
             }),
         });
 
@@ -68,5 +78,5 @@ export default function EditProfile({ params }: any) {
                 <button type="submit">Save</button>
             </form>
         </main>
-    )
+    );
 }
