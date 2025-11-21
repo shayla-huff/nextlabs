@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default async function ProfileDetail({ params }: any) {
     const id = Number(params.id);
-    const profile = await prisma.profile.findUnique({
+    const profile = await prisma.profiles.findUnique({
         where: { id },
     });
 
