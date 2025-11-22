@@ -33,20 +33,22 @@ button {
   transition: background-color 0.2s ease;
 }
 
-.btn {
+.edit-btn {
   padding: 0.4rem 0.8rem;
   border: none;
   cursor: pointer;
   font-size: 0.9rem;
   margin-right: 0.5rem;
-}
-
-.edit-btn {
   background-color: #2563eb;
   color: white;
 }
 
 .delete-btn {
+  padding: 0.4rem 0.8rem;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-right: 0.5rem;
   background-color: #d00000;
   color: white;
 }
