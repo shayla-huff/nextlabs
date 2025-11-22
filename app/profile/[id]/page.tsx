@@ -6,7 +6,6 @@ export default async function ProfileDetail({
 }: {
   params: Promise<{ id: string }>;
 }) {
-
   const { id } = await params;
   const numericId = Number(id);
 
@@ -35,10 +34,13 @@ export default async function ProfileDetail({
       <br />
 
       <form action={`/profile/${numericId}/delete`} method="POST">
-        <button type="submit" className="delete-btn">Delete</button>
+        <button type="submit" className="delete-btn">
+          Delete
+        </button>
       </form>
     </main>
   );
 }
+
 
 
