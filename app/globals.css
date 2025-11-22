@@ -22,35 +22,29 @@ input {
   border: 1px solid #ccc;
 }
 
-button {
-  margin-top: 1rem;
-  background-color: #2563eb;
-  color: white;
-  border: none;
-  padding: 0.7rem 1rem;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.edit-btn {
+.btn {
   padding: 0.4rem 0.8rem;
+  border-radius: 6px;
   border: none;
   cursor: pointer;
   font-size: 0.9rem;
   margin-right: 0.5rem;
-  background-color: #2563eb;
+}
+
+.btn-edit {
+  background-color: #2563eb; /* blue */
   color: white;
 }
 
-.delete-btn {
-  padding: 0.4rem 0.8rem;
-  border: none;
-  cursor: pointer;
-  font-size: 0.9rem;
-  margin-right: 0.5rem;
-  background-color: #d00000;
+.btn-edit:hover {
+  background-color: #1d4ed8;
+}
+
+.btn-delete {
+  background-color: #dc2626; /* red */
   color: white;
 }
 
-
+.btn-delete:hover {
+  background-color: #b91c1c;
+}

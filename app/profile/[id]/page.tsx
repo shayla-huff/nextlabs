@@ -27,20 +27,21 @@ export default async function ProfileDetail({
       <br />
 
       <Link href={`/profile/${numericId}/edit`}>
-        <button className="edit-btn">Edit</button>
+        <button className="btn btn-edit">Edit</button>
       </Link>
 
       <br />
       <br />
-
+      
       <form action={`/profile/${numericId}/delete`} method="POST">
-        <button type="submit" className="delete-btn">
+        <button type="submit" className="btn btn-delete">
           Delete
         </button>
       </form>
     </main>
   );
 }
+
 
 
 
