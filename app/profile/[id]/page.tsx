@@ -1,31 +1,44 @@
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 
-export default async function ProfileDetail({ params }: any) {
-    const id = Number(params.id);
-    const profile = await prisma.profiles.findUnique({
-        where: { id },
-    });
+export default async function ProfileDetail({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
 
-    if (!profile) return <p>Profile not found</p>;
+  const { id } = await params;
+  const numericId = Number(id);
 
-    return (
-        <main>
-            <h1>{profile.name}</h1>
-            <p>{profile.title}</p>
-            <p>{profile.email}</p>
-            <p>{profile.bio}</p>
-            <img src={profile.image_url} width={150} />
+  const profile = await prisma.profiles.findUnique({
+    where: { id: numericId },
+  });
 
-            <br /><br />
+  if (!profile) return <p>Profile not found</p>;
 
-            <Link href ={`/profile/${id}/edit`}>
-                <button>Edit</button>
-            </Link>
+  return (
+    <main>
+      <h1>{profile.name}</h1>
+      <p>{profile.title}</p>
+      <p>{profile.email}</p>
+      <p>{profile.bio}</p>
+      <img src={profile.image_url} width={150} />
 
-            <form action={`/profile/${id}/delete`} method="POST">
-                <button type="submit">Delete</button>
-            </form>
-        </main>
-    );
+      <br />
+      <br />
+
+      <Link href={`/profile/${numericId}/edit`}>
+        <button className="btn edit-btn">Edit</button>
+      </Link>
+
+      <br />
+      <br />
+
+      <form action={`/profile/${numericId}/delete`} method="POST">
+        <button type="submit" className="btn delete-btn">Delete</button>
+      </form>
+    </main>
+  );
 }
+
+

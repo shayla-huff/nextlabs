@@ -1,12 +1,24 @@
 import { prisma } from "@/lib/prisma";
 
-export async function GET() {
-    try {
-        const profiles = await prisma.profiles.findMany();
-        return Response.json(profiles);
-    } catch (error) {
-        return Response.json({ error: error.message }, { status: 500 });
+export async function GET(request) {
+  try {
+    const { searchParams } = new URL(request.url);
+    const id = searchParams.get("id");
+
+    // If an id is provided, return a single profile
+    if (id) {
+      const profile = await prisma.profiles.findUnique({
+        where: { id: Number(id) },
+      });
+      return Response.json(profile, { status: 200 });
     }
+
+    // Otherwise return all profiles
+    const profiles = await prisma.profiles.findMany();
+    return Response.json(profiles, { status: 200 });
+  } catch (error) {
+    return Response.json({ error: error.message }, { status: 500 });
+  }
 }
 
 export async function POST(request) {
