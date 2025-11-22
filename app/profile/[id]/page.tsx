@@ -6,6 +6,7 @@ export default async function ProfileDetail({
 }: {
   params: Promise<{ id: string }>;
 }) {
+  
   const { id } = await params;
   const numericId = Number(id);
 
@@ -13,7 +14,7 @@ export default async function ProfileDetail({
     where: { id: numericId },
   });
 
-  if (!profile) return <p>Profile not found</p>;
+  if (!profile) return <main><p>Profile not found</p></main>;
 
   return (
     <main>
@@ -23,24 +24,26 @@ export default async function ProfileDetail({
       <p>{profile.bio}</p>
       <img src={profile.image_url} width={150} />
 
-      <br />
-      <br />
+      <div style={{ marginTop: "1rem" }}>
 
-      <Link href={`/profile/${numericId}/edit`}>
-        <button className="btn btn-edit">Edit</button>
-      </Link>
+        <Link href={`/profile/${numericId}/edit`} className="btn btn-edit">
+          Edit
+        </Link>
 
-      <br />
-      <br />
-      
-      <form action={`/profile/${numericId}/delete`} method="POST">
-        <button type="submit" className="btn btn-delete">
-          Delete
-        </button>
-      </form>
+        <form
+          action={`/profile/${numericId}/delete`}
+          method="POST"
+          style={{ display: "inline-block", marginLeft: "0.5rem" }}
+        >
+          <button type="submit" className="btn btn-delete">
+            Delete
+          </button>
+        </form>
+      </div>
     </main>
   );
 }
+
 
 
 
